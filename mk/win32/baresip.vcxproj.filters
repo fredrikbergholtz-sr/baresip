@@ -156,6 +156,9 @@
     <ClInclude Include="..\..\include\opus\opus_types.h">
       <Filter>include\opus</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\win32_getopt.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\account.c">

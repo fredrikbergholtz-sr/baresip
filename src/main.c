@@ -10,9 +10,15 @@
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
-#ifdef HAVE_GETOPT
+
+#ifdef WIN32
+#include <win32_getopt.h>
+#else
 #include <getopt.h>
 #endif
+//#ifdef HAVE_GETOPT
+//#include <getopt.h>
+//#endif
 #include <re.h>
 #include <baresip.h>
 
@@ -88,7 +94,7 @@ int main(int argc, char *argv[])
 	if (err)
 		goto out;
 
-#ifdef HAVE_GETOPT
+//#ifdef HAVE_GETOPT
 	for (;;) {
 		const int c = getopt(argc, argv, "6de:f:p:hu:vtm:");
 		if (0 > c)
@@ -155,10 +161,10 @@ int main(int argc, char *argv[])
 			break;
 		}
 	}
-#else
-	(void)argc;
-	(void)argv;
-#endif
+//#else
+//	(void)argc;
+//	(void)argv;
+//#endif
 
 	err = conf_configure();
 	if (err) {

@@ -120,6 +120,7 @@
     <ClInclude Include="..\..\include\opus\opus_multistream.h" />
     <ClInclude Include="..\..\include\opus\opus_types.h" />
     <ClInclude Include="..\..\include\win32_dirent.h" />
+    <ClInclude Include="..\..\include\win32_getopt.h" />
     <ClInclude Include="..\..\modules\amr\amr.h" />
     <ClInclude Include="..\..\modules\natpmp\libnatpmp.h" />
     <ClInclude Include="..\..\modules\opus\opus.h" />
