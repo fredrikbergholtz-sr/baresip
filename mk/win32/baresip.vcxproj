@@ -102,6 +102,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\libopus\win32\VS2015\opus.vcxproj">
+      <Project>{219ec965-228a-1824-174d-96449d05f88a}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\rem\mk\win32\rem.vcxproj">
       <Project>{3e767371-a72b-4f5c-a695-8f844b0889c5}</Project>
     </ProjectReference>
@@ -111,9 +114,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\baresip.h" />
+    <ClInclude Include="..\..\include\opus\opus.h" />
+    <ClInclude Include="..\..\include\opus\opus_custom.h" />
+    <ClInclude Include="..\..\include\opus\opus_defines.h" />
+    <ClInclude Include="..\..\include\opus\opus_multistream.h" />
+    <ClInclude Include="..\..\include\opus\opus_types.h" />
     <ClInclude Include="..\..\include\win32_dirent.h" />
     <ClInclude Include="..\..\modules\amr\amr.h" />
     <ClInclude Include="..\..\modules\natpmp\libnatpmp.h" />
+    <ClInclude Include="..\..\modules\opus\opus.h" />
     <ClInclude Include="..\..\modules\presence\presence.h" />
     <ClInclude Include="..\..\modules\srtp\sdes.h" />
     <ClInclude Include="..\..\modules\vidbridge\vidbridge.h" />
@@ -144,6 +153,10 @@
     <ClCompile Include="..\..\modules\natbd\natbd.c" />
     <ClCompile Include="..\..\modules\natpmp\libnatpmp.c" />
     <ClCompile Include="..\..\modules\natpmp\natpmp.c" />
+    <ClCompile Include="..\..\modules\opus\decode.c" />
+    <ClCompile Include="..\..\modules\opus\encode.c" />
+    <ClCompile Include="..\..\modules\opus\opus.c" />
+    <ClCompile Include="..\..\modules\opus\sdp.c" />
     <ClCompile Include="..\..\modules\presence\notifier.c" />
     <ClCompile Include="..\..\modules\presence\presence.c" />
     <ClCompile Include="..\..\modules\presence\publisher.c" />

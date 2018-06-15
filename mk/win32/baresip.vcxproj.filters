@@ -100,6 +100,12 @@
     <Filter Include="modules\winwave">
       <UniqueIdentifier>{e3bd480b-289e-4754-b1a2-55ea85a7ef45}</UniqueIdentifier>
     </Filter>
+    <Filter Include="modules\opus">
+      <UniqueIdentifier>{92bd3174-3044-42fb-be7c-e304184b3d29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\opus">
+      <UniqueIdentifier>{2d715578-67d1-4cf6-a802-589ce2e30337}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\baresip.h">
@@ -131,6 +137,24 @@
     </ClInclude>
     <ClInclude Include="..\..\include\win32_dirent.h">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\opus\opus.h">
+      <Filter>modules\opus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\opus\opus.h">
+      <Filter>include\opus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\opus\opus_custom.h">
+      <Filter>include\opus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\opus\opus_defines.h">
+      <Filter>include\opus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\opus\opus_multistream.h">
+      <Filter>include\opus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\opus\opus_types.h">
+      <Filter>include\opus</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -372,6 +396,18 @@
     <ClCompile Include="..\..\src\event.c" />
     <ClCompile Include="..\..\src\timer.c">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\opus\decode.c">
+      <Filter>modules\opus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\opus\encode.c">
+      <Filter>modules\opus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\opus\opus.c">
+      <Filter>modules\opus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\opus\sdp.c">
+      <Filter>modules\opus</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
