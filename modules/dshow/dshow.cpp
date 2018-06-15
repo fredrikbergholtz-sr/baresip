@@ -5,6 +5,8 @@
  * Copyright (C) 2010 Dusan Stevanovic
  */
 
+#ifdef HAVE_QEDIT_H
+
 #include <stdio.h>
 #include <re.h>
 #include <rem.h>
@@ -536,3 +538,5 @@ extern "C" const struct mod_export DECL_EXPORTS(dshow) = {
 	module_init,
 	module_close
 };
+
+#endif //HAVE_QEDIT_H

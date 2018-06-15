@@ -129,6 +129,9 @@
     <ClInclude Include="..\..\modules\winwave\winwave.h">
       <Filter>modules\winwave</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\win32_dirent.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\account.c">
