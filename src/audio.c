@@ -146,8 +146,8 @@ struct aurx {
 	int16_t *sampv_rs;            /**< Sample buffer for resampler     */
 	uint32_t ptime;               /**< Packet time for receiving       */
 	int pt;                       /**< Payload type for incoming RTP   */
-	double level_last;
-	bool level_set;
+	double level_last;            /**< Last audio level value [dBov]   */
+	bool level_set;               /**< True if level_last is set       */
 	enum aufmt play_fmt;          /**< Sample format for audio playback*/
 	enum aufmt dec_fmt;           /**< Sample format for decoder       */
 	bool need_conv;               /**< Sample format conversion needed */
@@ -1758,9 +1758,16 @@ void audio_encoder_cycle(struct audio *audio)
 }
 
 
-struct stream *audio_strm(const struct audio *a)
+/**
+ * Get the RTP Stream object from an Audio object
+ *
+ * @param au  Audio object
+ *
+ * @return RTP Stream object
+ */
+struct stream *audio_strm(const struct audio *au)
 {
-	return a ? a->strm : NULL;
+	return au ? au->strm : NULL;
 }
 
 
@@ -1971,7 +1978,9 @@ int audio_debug(struct re_printf *pf, const struct audio *a)
 				     tx->ausrc_prm.ch),
 			  tx->stats.aubuf_overrun,
 			  tx->stats.aubuf_underrun);
-	err |= re_hprintf(pf, "       source: %s\n",
+	err |= re_hprintf(pf, "       source: %s,%s %s\n",
+			  tx->ausrc ? tx->ausrc->as->name : "none",
+			  tx->device,
 			  aufmt_name(tx->src_fmt));
 	err |= re_hprintf(pf, "       time = %.3f sec\n",
 			  autx_calc_seconds(tx));
@@ -1993,7 +2002,10 @@ int audio_debug(struct re_printf *pf, const struct audio *a)
 			  rx->stats.aubuf_overrun,
 			  rx->stats.aubuf_underrun
 			  );
-	err |= re_hprintf(pf, "       player: %s\n", aufmt_name(rx->play_fmt));
+	err |= re_hprintf(pf, "       player: %s,%s %s\n",
+			  rx->auplay ? rx->auplay->ap->name : "none",
+			  rx->device,
+			  aufmt_name(rx->play_fmt));
 	err |= re_hprintf(pf, "       n_discard:%llu\n",
 			  rx->stats.n_discard);
 	if (rx->level_set) {
@@ -2020,6 +2032,14 @@ int audio_debug(struct re_printf *pf, const struct audio *a)
 }
 
 
+/**
+ * Set the audio source and player device name. This function does not
+ * change the state of the audio source/player.
+ *
+ * @param a     Audio object
+ * @param src   Audio source device name
+ * @param play  Audio player device name
+ */
 void audio_set_devicename(struct audio *a, const char *src, const char *play)
 {
 	if (!a)
@@ -2030,6 +2050,16 @@ void audio_set_devicename(struct audio *a, const char *src, const char *play)
 }
 
 
+/**
+ * Set the audio source state to a new audio source module and device.
+ * The current audio source will be stopped.
+ *
+ * @param au     Audio object
+ * @param mod    Audio source module (NULL to stop)
+ * @param device Audio source device name
+ *
+ * @return 0 if success, otherwise errorcode
+ */
 int audio_set_source(struct audio *au, const char *mod, const char *device)
 {
 	struct autx *tx;
@@ -2059,6 +2089,16 @@ int audio_set_source(struct audio *au, const char *mod, const char *device)
 }
 
 
+/**
+ * Set the audio player state to a new audio player module and device.
+ * The current audio player will be stopped.
+ *
+ * @param au     Audio object
+ * @param mod    Audio player module (NULL to stop)
+ * @param device Audio player device name
+ *
+ * @return 0 if success, otherwise errorcode
+ */
 int audio_set_player(struct audio *au, const char *mod, const char *device)
 {
 	struct aurx *rx;
@@ -2072,13 +2112,16 @@ int audio_set_player(struct audio *au, const char *mod, const char *device)
 	/* stop the audio device first */
 	rx->auplay = mem_deref(rx->auplay);
 
-	err = auplay_alloc(&rx->auplay, baresip_auplayl(),
-			   mod, &rx->auplay_prm, device,
-			   auplay_write_handler, rx);
-	if (err) {
-		warning("audio: set_player failed (%s.%s): %m\n",
-			mod, device, err);
-		return err;
+	if (str_isset(mod)) {
+
+		err = auplay_alloc(&rx->auplay, baresip_auplayl(),
+				   mod, &rx->auplay_prm, device,
+				   auplay_write_handler, rx);
+		if (err) {
+			warning("audio: set_player failed (%s.%s): %m\n",
+				mod, device, err);
+			return err;
+		}
 	}
 
 	return 0;
@@ -2151,6 +2194,14 @@ int audio_print_rtpstat(struct re_printf *pf, const struct audio *a)
 }
 
 
+/**
+ * Set the bitrate for the audio encoder
+ *
+ * @param au      Audio object
+ * @param bitrate Encoder bitrate in [bits/s]
+ *
+ * @return 0 if success, otherwise errorcode
+ */
 int audio_set_bitrate(struct audio *au, uint32_t bitrate)
 {
 	struct autx *tx;
@@ -2192,9 +2243,16 @@ int audio_set_bitrate(struct audio *au, uint32_t bitrate)
 }
 
 
-bool audio_rxaubuf_started(struct audio *au)
+/**
+ * Check if audio receiving has started
+ *
+ * @param au      Audio object
+ *
+ * @return True if started, otherwise false
+ */
+bool audio_rxaubuf_started(const struct audio *au)
 {
-	struct aurx *rx;
+	const struct aurx *rx;
 
 	if (!au)
 		return false;
