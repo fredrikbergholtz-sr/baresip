@@ -52,7 +52,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>include;..\..\include;..\..\..\re\include;..\..\..\rem\include;..\..\..\misc;..\..\..\dirent\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;..\..\include;..\..\..\re\include;..\..\..\rem\include;..\..\..\misc;..\..\..\dirent\include;..\..\..\portaudio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;STATIC;HAVE_IO_H;HAVE_SELECT;USE_VIDEO;_CRT_SECURE_NO_DEPRECATE;FD_SETSIZE=1024;SHARE_PATH="/usr/share/baresip";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -104,6 +104,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\libopus\win32\VS2015\opus.vcxproj">
       <Project>{219ec965-228a-1824-174d-96449d05f88a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\portaudio\build\msvc\portaudio.vcxproj">
+      <Project>{0a18a071-125e-442f-aff7-a3f68abecf99}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\rem\mk\win32\rem.vcxproj">
       <Project>{3e767371-a72b-4f5c-a695-8f844b0889c5}</Project>
@@ -158,6 +161,7 @@
     <ClCompile Include="..\..\modules\opus\encode.c" />
     <ClCompile Include="..\..\modules\opus\opus.c" />
     <ClCompile Include="..\..\modules\opus\sdp.c" />
+    <ClCompile Include="..\..\modules\portaudio\portaudio.c" />
     <ClCompile Include="..\..\modules\presence\notifier.c" />
     <ClCompile Include="..\..\modules\presence\presence.c" />
     <ClCompile Include="..\..\modules\presence\publisher.c" />

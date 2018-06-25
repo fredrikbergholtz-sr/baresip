@@ -8,6 +8,7 @@ extern const struct mod_export exports_g711;
 extern const struct mod_export exports_l16;
 extern const struct mod_export exports_opus;
 extern const struct mod_export exports_winwave;
+extern const struct mod_export exports_portaudio;
 #ifdef HAVE_QEDIT_H
 extern const struct mod_export exports_dshow; // This module does not work on win 7 or later?
 #endif
@@ -29,6 +30,7 @@ const struct mod_export *mod_table[] = {
 	&exports_l16,
 	&exports_opus,
 	&exports_winwave,
+	&exports_portaudio,
 #ifdef HAVE_QEDIT_H
 	&exports_dshow,
 #endif

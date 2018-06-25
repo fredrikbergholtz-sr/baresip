@@ -10,9 +10,6 @@
     <Filter Include="src\video">
       <UniqueIdentifier>{f5f435ce-121f-4b09-b66f-89e75e8abb40}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\static">
-      <UniqueIdentifier>{7f749aed-9d81-46c6-bdde-690ddc51a0a4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="modules">
       <UniqueIdentifier>{6c97676c-7c18-404f-85a1-2fded4f104e3}</UniqueIdentifier>
     </Filter>
@@ -105,6 +102,12 @@
     </Filter>
     <Filter Include="include\opus">
       <UniqueIdentifier>{2d715578-67d1-4cf6-a802-589ce2e30337}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\static">
+      <UniqueIdentifier>{7f749aed-9d81-46c6-bdde-690ddc51a0a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\portaudio">
+      <UniqueIdentifier>{d50cc54f-f568-4ffe-8669-4fedc897920b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -411,6 +414,9 @@
     </ClCompile>
     <ClCompile Include="..\..\modules\opus\sdp.c">
       <Filter>modules\opus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\portaudio\portaudio.c">
+      <Filter>modules\portaudio</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

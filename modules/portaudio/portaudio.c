@@ -104,6 +104,7 @@ static PaSampleFormat aufmt_to_pasampleformat(enum aufmt fmt)
 	switch (fmt) {
 
 	case AUFMT_S16LE: return paInt16;
+	case AUFMT_S24_3LE: return paInt24;
 	case AUFMT_FLOAT: return paFloat32;
 	default: return 0;
 	}
