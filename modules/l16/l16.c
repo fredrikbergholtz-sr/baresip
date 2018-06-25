@@ -6,7 +6,7 @@
 #include <re.h>
 #include <rem.h>
 #include <baresip.h>
-
+#include <stdlib.h>
 
 /**
  * @defgroup l16 l16
@@ -22,22 +22,42 @@ static int encode(struct auenc_state *st, uint8_t *buf, size_t *len,
 		  int fmt, const void *sampv, size_t sampc)
 {
 	int16_t *p = (void *)buf;
+	int16_t tmp;
 	const int16_t *sampv16 = sampv;
 	(void)st;
 
 	if (!buf || !len || !sampv)
 		return EINVAL;
 
-	if (*len < sampc*2)
+	if (*len < sampc * 2)
 		return ENOMEM;
 
-	if (fmt != AUFMT_S16LE)
+	switch (fmt)
+	{
+	case AUFMT_S16LE:
+		*len = sampc * 2;
+		while (sampc--)
+			*p++ = htons(*sampv16++);
+		break;
+
+	case AUFMT_S24_3LE:
+		*len = sampc * 2;
+		while (sampc--)
+		{
+			tmp = (int16_t)(((rand() % 256 - 128) + (*((int8_t*)sampv16)++) ) / 256);
+			*p++ = htons(tmp + *sampv16++);
+		}
+		break;
+
+	case AUFMT_FLOAT:
 		return ENOTSUP;
+		break;
 
-	*len = sampc*2;
+	default:
+		return ENOTSUP;
+		break;
+	}
 
-	while (sampc--)
-		*p++ = htons(*sampv16++);
 
 	return 0;
 }
@@ -47,6 +67,7 @@ static int decode(struct audec_state *st, int fmt, void *sampv, size_t *sampc,
 		  const uint8_t *buf, size_t len)
 {
 	int16_t *p = (void *)buf;
+	int8_t *sampv8 = sampv;
 	int16_t *sampv16 = sampv;
 	(void)st;
 
@@ -56,14 +77,36 @@ static int decode(struct audec_state *st, int fmt, void *sampv, size_t *sampc,
 	if (*sampc < len/2)
 		return ENOMEM;
 
-	if (fmt != AUFMT_S16LE)
+
+	switch (fmt)
+	{
+	case AUFMT_S16LE:
+		*sampc = len / 2;
+		len /= 2;
+		while (len--)
+			*sampv16++ = ntohs(*p++);
+		break;
+
+	case AUFMT_S24_3LE:
+		*sampc = len / 2;
+		len /= 2;
+		while (len--)
+		{
+			// TODO: Do we have to take byte order into account here?
+			*((int8_t*)sampv16)++ = 0; // TODO: Add dither noise instead of zero
+			*sampv16++ = ntohs(*p++);
+		}
+		break;
+
+	case AUFMT_FLOAT:
 		return ENOTSUP;
+		break;
 
-	*sampc = len/2;
+	default:
+		return ENOTSUP;
+		break;
+	}
 
-	len /= 2;
-	while (len--)
-		*sampv16++ = ntohs(*p++);
 
 	return 0;
 }
