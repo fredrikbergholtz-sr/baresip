@@ -92,8 +92,7 @@ static int decode(struct audec_state *st, int fmt, void *sampv, size_t *sampc,
 		len /= 2;
 		while (len--)
 		{
-			// TODO: Do we have to take byte order into account here?
-			*((int8_t*)sampv16)++ = 0; // TODO: Add dither noise instead of zero
+			*((int8_t*)sampv16)++ = 0;
 			*sampv16++ = ntohs(*p++);
 		}
 		break;
