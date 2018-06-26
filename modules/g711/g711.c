@@ -20,6 +20,7 @@ static int pcmu_encode(struct auenc_state *aes, uint8_t *buf,
 		       size_t *len, int fmt, const void *sampv, size_t sampc)
 {
 	const int16_t *p = sampv;
+	int16_t tmp;
 
 	(void)aes;
 
@@ -29,13 +30,29 @@ static int pcmu_encode(struct auenc_state *aes, uint8_t *buf,
 	if (*len < sampc)
 		return ENOMEM;
 
-	if (fmt != AUFMT_S16LE)
+	switch (fmt)
+	{
+	case AUFMT_S16LE:
+		*len = sampc;
+
+		while (sampc--)
+			*buf++ = g711_pcm2ulaw(*p++);
+		break;
+
+	case AUFMT_S24_3LE:
+		*len = sampc;
+
+		while (sampc--)
+		{
+			tmp = (int16_t)(((rand() % 256 - 128) + (*((int8_t*)p)++)) / 256);
+			*buf++ = g711_pcm2ulaw(tmp + *p++);
+		}
+		break;
+
+	default:
 		return ENOTSUP;
-
-	*len = sampc;
-
-	while (sampc--)
-		*buf++ = g711_pcm2ulaw(*p++);
+		break;
+	}
 
 	return 0;
 }
@@ -54,13 +71,29 @@ static int pcmu_decode(struct audec_state *ads, int fmt, void *sampv,
 	if (*sampc < len)
 		return ENOMEM;
 
-	if (fmt != AUFMT_S16LE)
+	switch (fmt)
+	{
+	case AUFMT_S16LE:
+		*sampc = len;
+
+		while (len--)
+			*p++ = g711_ulaw2pcm(*buf++);
+		break;
+
+	case AUFMT_S24_3LE:
+		*sampc = len;
+
+		while (len--)
+		{
+			*((int8_t*)p)++ = 0;
+			*p++ = g711_ulaw2pcm(*buf++);
+		}
+		break;
+
+	default:
 		return ENOTSUP;
-
-	*sampc = len;
-
-	while (len--)
-		*p++ = g711_ulaw2pcm(*buf++);
+		break;
+	}
 
 	return 0;
 }
@@ -70,6 +103,7 @@ static int pcma_encode(struct auenc_state *aes, uint8_t *buf,
 		       size_t *len, int fmt, const void *sampv, size_t sampc)
 {
 	const int16_t *p = sampv;
+	int16_t tmp;
 
 	(void)aes;
 
@@ -79,13 +113,29 @@ static int pcma_encode(struct auenc_state *aes, uint8_t *buf,
 	if (*len < sampc)
 		return ENOMEM;
 
-	if (fmt != AUFMT_S16LE)
+	switch (fmt)
+	{
+	case AUFMT_S16LE:
+		*len = sampc;
+
+		while (sampc--)
+			*buf++ = g711_pcm2ulaw(*p++);
+		break;
+
+	case AUFMT_S24_3LE:
+		*len = sampc;
+
+		while (sampc--)
+		{
+			tmp = (int16_t)(((rand() % 256 - 128) + (*((int8_t*)p)++)) / 256);
+			*buf++ = g711_pcm2alaw(tmp + *p++);
+		}
+		break;
+
+	default:
 		return ENOTSUP;
-
-	*len = sampc;
-
-	while (sampc--)
-		*buf++ = g711_pcm2alaw(*p++);
+		break;
+	}
 
 	return 0;
 }
@@ -104,13 +154,29 @@ static int pcma_decode(struct audec_state *ads, int fmt, void *sampv,
 	if (*sampc < len)
 		return ENOMEM;
 
-	if (fmt != AUFMT_S16LE)
+	switch (fmt)
+	{
+	case AUFMT_S16LE:
+		*sampc = len;
+
+		while (len--)
+			*p++ = g711_alaw2pcm(*buf++);
+		break;
+
+	case AUFMT_S24_3LE:
+		*sampc = len;
+
+		while (len--)
+		{
+			*((int8_t*)p)++ = 0;
+			*p++ = g711_alaw2pcm(*buf++);
+		}
+		break;
+
+	default:
 		return ENOTSUP;
-
-	*sampc = len;
-
-	while (len--)
-		*p++ = g711_alaw2pcm(*buf++);
+		break;
+	}
 
 	return 0;
 }
