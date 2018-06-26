@@ -44,7 +44,7 @@ static int encode(struct auenc_state *st, uint8_t *buf, size_t *len,
 		*len = sampc * 2;
 		while (sampc--)
 		{
-			tmp = (int16_t)(((rand() % 256 - 128) + (*((int8_t*)sampv16)++) ) / 256);
+			tmp = (int16_t)(((rand() % 256 - 128) + (*((int8_t*)sampv16)++) + 128) / 256);
 			*p++ = htons(tmp + *sampv16++);
 		}
 		break;

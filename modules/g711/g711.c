@@ -44,7 +44,7 @@ static int pcmu_encode(struct auenc_state *aes, uint8_t *buf,
 
 		while (sampc--)
 		{
-			tmp = (int16_t)(((rand() % 256 - 128) + (*((int8_t*)p)++)) / 256);
+			tmp = (int16_t)(((rand() % 256 - 128) + (*((int8_t*)p)++) + 128) / 256);
 			*buf++ = g711_pcm2ulaw(tmp + *p++);
 		}
 		break;
