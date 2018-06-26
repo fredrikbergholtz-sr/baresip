@@ -102,7 +102,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\libopus\win32\VS2015\opus.vcxproj">
+    <ProjectReference Include="..\..\..\opus\win32\VS2015\opus.vcxproj">
       <Project>{219ec965-228a-1824-174d-96449d05f88a}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\portaudio\build\msvc\portaudio.vcxproj">

@@ -16,9 +16,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rem-win32", "..\..\..\rem\m
 		{40B28DF6-4B4A-411A-9EB7-8D80C2A29B9D} = {40B28DF6-4B4A-411A-9EB7-8D80C2A29B9D}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "opus", "..\..\..\libopus\win32\VS2015\opus.vcxproj", "{219EC965-228A-1824-174D-96449D05F88A}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "portaudio", "..\..\..\portaudio\build\msvc\portaudio.vcxproj", "{0A18A071-125E-442F-AFF7-A3F68ABECF99}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "opus", "..\..\..\opus\win32\VS2015\opus.vcxproj", "{219EC965-228A-1824-174D-96449D05F88A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -116,34 +116,6 @@ Global
 		{3E767371-A72B-4F5C-A695-8F844B0889C5}.ReleaseMinDependency|Win32.Build.0 = Release|Win32
 		{3E767371-A72B-4F5C-A695-8F844B0889C5}.ReleaseMinDependency|x64.ActiveCfg = Release|Win32
 		{3E767371-A72B-4F5C-A695-8F844B0889C5}.ReleaseMinDependency|x64.Build.0 = Release|Win32
-		{219EC965-228A-1824-174D-96449D05F88A}.Debug|Win32.ActiveCfg = Debug|Win32
-		{219EC965-228A-1824-174D-96449D05F88A}.Debug|Win32.Build.0 = Debug|Win32
-		{219EC965-228A-1824-174D-96449D05F88A}.Debug|x64.ActiveCfg = Debug|x64
-		{219EC965-228A-1824-174D-96449D05F88A}.Debug|x64.Build.0 = Debug|x64
-		{219EC965-228A-1824-174D-96449D05F88A}.DebugDLL_fixed|Win32.ActiveCfg = DebugDLL_fixed|Win32
-		{219EC965-228A-1824-174D-96449D05F88A}.DebugDLL_fixed|Win32.Build.0 = DebugDLL_fixed|Win32
-		{219EC965-228A-1824-174D-96449D05F88A}.DebugDLL_fixed|x64.ActiveCfg = DebugDLL_fixed|x64
-		{219EC965-228A-1824-174D-96449D05F88A}.DebugDLL_fixed|x64.Build.0 = DebugDLL_fixed|x64
-		{219EC965-228A-1824-174D-96449D05F88A}.DebugDLL|Win32.ActiveCfg = DebugDLL|Win32
-		{219EC965-228A-1824-174D-96449D05F88A}.DebugDLL|Win32.Build.0 = DebugDLL|Win32
-		{219EC965-228A-1824-174D-96449D05F88A}.DebugDLL|x64.ActiveCfg = DebugDLL|x64
-		{219EC965-228A-1824-174D-96449D05F88A}.DebugDLL|x64.Build.0 = DebugDLL|x64
-		{219EC965-228A-1824-174D-96449D05F88A}.Release|Win32.ActiveCfg = Release|Win32
-		{219EC965-228A-1824-174D-96449D05F88A}.Release|Win32.Build.0 = Release|Win32
-		{219EC965-228A-1824-174D-96449D05F88A}.Release|x64.ActiveCfg = Release|x64
-		{219EC965-228A-1824-174D-96449D05F88A}.Release|x64.Build.0 = Release|x64
-		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseDLL_fixed|Win32.ActiveCfg = ReleaseDLL_fixed|Win32
-		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseDLL_fixed|Win32.Build.0 = ReleaseDLL_fixed|Win32
-		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseDLL_fixed|x64.ActiveCfg = ReleaseDLL_fixed|x64
-		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseDLL_fixed|x64.Build.0 = ReleaseDLL_fixed|x64
-		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseDLL|Win32.ActiveCfg = ReleaseDLL|Win32
-		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseDLL|Win32.Build.0 = ReleaseDLL|Win32
-		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseDLL|x64.ActiveCfg = ReleaseDLL|x64
-		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseDLL|x64.Build.0 = ReleaseDLL|x64
-		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseMinDependency|Win32.ActiveCfg = ReleaseDLL|Win32
-		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseMinDependency|Win32.Build.0 = ReleaseDLL|Win32
-		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseMinDependency|x64.ActiveCfg = ReleaseDLL|x64
-		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseMinDependency|x64.Build.0 = ReleaseDLL|x64
 		{0A18A071-125E-442F-AFF7-A3F68ABECF99}.Debug|Win32.ActiveCfg = Debug|Win32
 		{0A18A071-125E-442F-AFF7-A3F68ABECF99}.Debug|Win32.Build.0 = Debug|Win32
 		{0A18A071-125E-442F-AFF7-A3F68ABECF99}.Debug|x64.ActiveCfg = Debug|x64
@@ -172,6 +144,34 @@ Global
 		{0A18A071-125E-442F-AFF7-A3F68ABECF99}.ReleaseMinDependency|Win32.Build.0 = ReleaseMinDependency|Win32
 		{0A18A071-125E-442F-AFF7-A3F68ABECF99}.ReleaseMinDependency|x64.ActiveCfg = ReleaseMinDependency|x64
 		{0A18A071-125E-442F-AFF7-A3F68ABECF99}.ReleaseMinDependency|x64.Build.0 = ReleaseMinDependency|x64
+		{219EC965-228A-1824-174D-96449D05F88A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{219EC965-228A-1824-174D-96449D05F88A}.Debug|Win32.Build.0 = Debug|Win32
+		{219EC965-228A-1824-174D-96449D05F88A}.Debug|x64.ActiveCfg = Debug|x64
+		{219EC965-228A-1824-174D-96449D05F88A}.Debug|x64.Build.0 = Debug|x64
+		{219EC965-228A-1824-174D-96449D05F88A}.DebugDLL_fixed|Win32.ActiveCfg = DebugDLL_fixed|Win32
+		{219EC965-228A-1824-174D-96449D05F88A}.DebugDLL_fixed|Win32.Build.0 = DebugDLL_fixed|Win32
+		{219EC965-228A-1824-174D-96449D05F88A}.DebugDLL_fixed|x64.ActiveCfg = DebugDLL_fixed|x64
+		{219EC965-228A-1824-174D-96449D05F88A}.DebugDLL_fixed|x64.Build.0 = DebugDLL_fixed|x64
+		{219EC965-228A-1824-174D-96449D05F88A}.DebugDLL|Win32.ActiveCfg = DebugDLL|Win32
+		{219EC965-228A-1824-174D-96449D05F88A}.DebugDLL|Win32.Build.0 = DebugDLL|Win32
+		{219EC965-228A-1824-174D-96449D05F88A}.DebugDLL|x64.ActiveCfg = DebugDLL|x64
+		{219EC965-228A-1824-174D-96449D05F88A}.DebugDLL|x64.Build.0 = DebugDLL|x64
+		{219EC965-228A-1824-174D-96449D05F88A}.Release|Win32.ActiveCfg = Release|Win32
+		{219EC965-228A-1824-174D-96449D05F88A}.Release|Win32.Build.0 = Release|Win32
+		{219EC965-228A-1824-174D-96449D05F88A}.Release|x64.ActiveCfg = Release|x64
+		{219EC965-228A-1824-174D-96449D05F88A}.Release|x64.Build.0 = Release|x64
+		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseDLL_fixed|Win32.ActiveCfg = ReleaseDLL_fixed|Win32
+		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseDLL_fixed|Win32.Build.0 = ReleaseDLL_fixed|Win32
+		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseDLL_fixed|x64.ActiveCfg = ReleaseDLL_fixed|x64
+		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseDLL_fixed|x64.Build.0 = ReleaseDLL_fixed|x64
+		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseDLL|Win32.ActiveCfg = ReleaseDLL|Win32
+		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseDLL|Win32.Build.0 = ReleaseDLL|Win32
+		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseDLL|x64.ActiveCfg = ReleaseDLL|x64
+		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseDLL|x64.Build.0 = ReleaseDLL|x64
+		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseMinDependency|Win32.ActiveCfg = ReleaseDLL|Win32
+		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseMinDependency|Win32.Build.0 = ReleaseDLL|Win32
+		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseMinDependency|x64.ActiveCfg = ReleaseDLL|x64
+		{219EC965-228A-1824-174D-96449D05F88A}.ReleaseMinDependency|x64.Build.0 = ReleaseDLL|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
