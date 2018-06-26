@@ -77,9 +77,18 @@ int opus_decode_frm(struct audec_state *ads,
 
 	case AUFMT_S16LE:
 		n = opus_decode(ads->dec, buf, (opus_int32)len,
-				sampv, (int)(*sampc/ads->ch), 0);
+			sampv, (int)(*sampc/ads->ch), 0);
 		if (n < 0) {
 			warning("opus: decode error: %s\n", opus_strerror(n));
+			return EPROTO;
+		}
+		break;
+
+	case AUFMT_S24_3LE:
+		n = opus_decode_s24(ads->dec, buf, (opus_int32)len,
+			(opus_int8 *)sampv, (int)(*sampc / ads->ch), 0);
+		if (n < 0) {
+			warning("opus: s24 decode error: %s\n", opus_strerror(n));
 			return EPROTO;
 		}
 		break;

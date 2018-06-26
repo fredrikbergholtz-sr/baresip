@@ -191,6 +191,16 @@ int opus_encode_frm(struct auenc_state *aes, uint8_t *buf, size_t *len,
 		}
 		break;
 
+	case AUFMT_S24_3LE:
+		n = opus_encode_s24(aes->enc, (opus_int8 *)sampv, (int)(sampc / aes->ch),
+			buf, (opus_int32)(*len));
+		if (n < 0) {
+			warning("opus: encode_s24 error: %s\n",
+				opus_strerror((int)n));
+			return EPROTO;
+		}
+		break;
+
 	case AUFMT_FLOAT:
 		n = opus_encode_float(aes->enc, sampv, (int)(sampc/aes->ch),
 				      buf, (opus_int32)(*len));
