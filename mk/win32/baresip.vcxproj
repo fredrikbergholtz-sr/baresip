@@ -79,7 +79,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>include;..\..\include;..\..\..\re\include;..\..\..\rem\include;..\..\..\misc;..\..\..\dirent\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;..\..\include;..\..\..\re\include;..\..\..\rem\include;..\..\..\misc;..\..\..\dirent\include;..\..\..\portaudio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;STATIC;HAVE_IO_H;HAVE_SELECT;USE_VIDEO;_CRT_SECURE_NO_DEPRECATE;FD_SETSIZE=1024;SHARE_PATH="/usr/share/baresip";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>
@@ -152,6 +152,7 @@
     <ClCompile Include="..\..\modules\httpd\httpd.c" />
     <ClCompile Include="..\..\modules\ice\ice.c" />
     <ClCompile Include="..\..\modules\l16\l16.c" />
+    <ClCompile Include="..\..\modules\l24\l24.c" />
     <ClCompile Include="..\..\modules\menu\menu.c" />
     <ClCompile Include="..\..\modules\mwi\mwi.c" />
     <ClCompile Include="..\..\modules\natbd\natbd.c" />

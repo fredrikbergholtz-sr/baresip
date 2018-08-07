@@ -109,6 +109,9 @@
     <Filter Include="modules\portaudio">
       <UniqueIdentifier>{d50cc54f-f568-4ffe-8669-4fedc897920b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="modules\l24">
+      <UniqueIdentifier>{8ea79c6d-ebe6-4012-88cd-6dea86b3f632}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\baresip.h">
@@ -417,6 +420,9 @@
     </ClCompile>
     <ClCompile Include="..\..\modules\portaudio\portaudio.c">
       <Filter>modules\portaudio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\l24\l24.c">
+      <Filter>modules\l24</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
