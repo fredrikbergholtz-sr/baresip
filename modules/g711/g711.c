@@ -7,7 +7,7 @@
 #include <re.h>
 #include <rem.h>
 #include <baresip.h>
-
+#include <stdlib.h>
 
 /**
  * @defgroup g711 g711
@@ -44,7 +44,8 @@ static int pcmu_encode(struct auenc_state *aes, uint8_t *buf,
 
 		while (sampc--)
 		{
-			tmp = (int16_t)(((rand() % 256 - 128) + (*((int8_t*)p)++) + 128) / 256);
+
+			tmp = (int16_t)(((rand() % 256 - 128) + *((int8_t*)p++) + 128) / 256);
 			*buf++ = g711_pcm2ulaw(tmp + *p++);
 		}
 		break;
@@ -85,7 +86,7 @@ static int pcmu_decode(struct audec_state *ads, int fmt, void *sampv,
 
 		while (len--)
 		{
-			*((int8_t*)p)++ = 0;
+			*(int8_t*)p++ = 0;
 			*p++ = g711_ulaw2pcm(*buf++);
 		}
 		break;
@@ -127,7 +128,7 @@ static int pcma_encode(struct auenc_state *aes, uint8_t *buf,
 
 		while (sampc--)
 		{
-			tmp = (int16_t)(((rand() % 256 - 128) + (*((int8_t*)p)++)) / 256);
+			tmp = (int16_t)(((rand() % 256 - 128) + *((int8_t*)p++)) / 256);
 			*buf++ = g711_pcm2alaw(tmp + *p++);
 		}
 		break;
@@ -168,7 +169,7 @@ static int pcma_decode(struct audec_state *ads, int fmt, void *sampv,
 
 		while (len--)
 		{
-			*((int8_t*)p)++ = 0;
+			*(int8_t*)p++ = 0;
 			*p++ = g711_alaw2pcm(*buf++);
 		}
 		break;
