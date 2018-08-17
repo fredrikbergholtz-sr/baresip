@@ -42,8 +42,8 @@ static int encode(struct auenc_state *st,
 		*len = sampc * 3;
 		while (sampc--)
 		{
-			*((int8_t*)out16)++ = 0;
 			*out16++ = htons(*in16++);
+			*((int8_t*)out16)++ = 0;
 		}
 		break;
 
@@ -98,8 +98,12 @@ static int decode(struct audec_state *st,
 		*sampc = len / 3;
 		len /= 3;
 		while (len--)
+		{
 			tmp = (int16_t)(((rand() % 256 - 128) + (*((int8_t*)in16)++) + 128) / 256);
 			*out16++ = ntohs(tmp + *in16++);
+//			tmp = *in16++;
+//			*out16++ = ntohs(tmp + (int16_t)(((rand() % 256 - 128) + (*((int8_t*)in16)++) + 128) / 256));
+		}
 		break;
 
 	case AUFMT_S24_3LE:

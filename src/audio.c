@@ -1154,7 +1154,8 @@ int audio_alloc(struct audio **ap, const struct stream_param *stream_prm,
 			goto out;
 	}
 
-	tx->mb = mbuf_alloc(STREAM_PRESZ + 4096);
+	tx->mb = mbuf_alloc(STREAM_PRESZ + 8192); //TODO: Is this the right way to increase the encode buffer size?
+//	tx->mb = mbuf_alloc(STREAM_PRESZ + 4096);
 	tx->sampv = mem_zalloc(AUDIO_SAMPSZ * aufmt_sample_size(tx->enc_fmt),
 			       NULL);
 

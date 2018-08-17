@@ -309,10 +309,12 @@ static int pa_init(void)
 
 	for (i=0; i<n; i++) {
 		const PaDeviceInfo *devinfo;
+		const PaHostApiInfo *hostApiInfo;
 
 		devinfo = Pa_GetDeviceInfo(i);
+		hostApiInfo = Pa_GetHostApiInfo(devinfo->hostApi);
 
-		debug("portaudio: device %d: %s\n", i, devinfo->name);
+		debug("portaudio: device %2d: %14s %s\n", i, hostApiInfo->name, devinfo->name);
 		(void)devinfo;
 	}
 
